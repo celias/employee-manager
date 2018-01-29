@@ -8,11 +8,21 @@ class EmployeeEditor extends Component {
       originalEmployee: null,
       notModified: true
     };
+    this.save = this.save.bind(this);
+    this.cancel = this.cancel.bind(this);
+
   }
 
   // componentWillReceiveProps
-
+  componentWillReceiveProps(props, val){
+    this.setState({ employee: Object.assign({}, props.selected), originalEmployee: props.selected, notModified: true });
+  }
   // handleChange
+  handleChange(props, val){
+    if( this.state.notModified ){
+      this.setState({ notModified: false });
+    }
+  }
 
   // save
   save(){
@@ -56,5 +66,4 @@ class EmployeeEditor extends Component {
     )
   }
 }
-
 export default EmployeeEditor;
